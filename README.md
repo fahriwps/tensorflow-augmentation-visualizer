@@ -33,7 +33,7 @@ Configure your file directory path:
 
 Then customize augmentation parameters inside `aug_parameter.yaml` file:
 
-```bash
+```yaml
 ...
 # Color augmentations
 random_adjust_brightness:
