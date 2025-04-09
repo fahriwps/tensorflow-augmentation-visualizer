@@ -1,0 +1,193 @@
+# Normalization parameters
+normalize_image:
+  original_minval: 0.0
+  original_maxval: 255.0
+  target_minval: -1.0
+  target_maxval: 1.0
+
+# Flip and rotation augmentations
+random_horizontal_flip:
+  keypoint_flip_permutation: [1, 0, 2, 3, 5, 4]
+  probability: 0.5
+
+random_vertical_flip:
+  keypoint_flip_permutation: [1, 0, 2, 3, 5, 4]
+  probability: 0.5
+
+random_rotation90:
+  keypoint_rot_permutation: [3, 0, 1, 2]
+  probability: 0.5
+
+# Pixel-level augmentations
+random_pixel_value_scale:
+  minval: 0.8
+  maxval: 1.2
+
+random_image_scale:
+  min_scale_ratio: 0.8
+  max_scale_ratio: 2.2
+
+random_rgb_to_gray:
+  probability: 0.8
+
+# Color augmentations
+random_adjust_brightness:
+  max_delta: 0.1
+
+random_adjust_contrast:
+  min_delta: 0.8
+  max_delta: 1.1
+
+random_adjust_hue:
+  max_delta: 0.1
+
+random_adjust_saturation:
+  min_delta: 0.8
+  max_delta: 1.1
+
+random_distort_color:
+  color_ordering: 1
+
+# Box and crop augmentations
+random_jitter_boxes:
+  ratio: 0.1
+  jitter_mode: "shrink"
+
+random_crop_image:
+  min_object_covered: 0.75
+  aspect_ratio_range: [0.75, 1.33]
+  area_range: [0.1, 1.0]
+  overlap_thresh: 0.5
+  clip_boxes: false
+  random_coef: 0.125
+
+random_pad_image: {}
+
+random_absolute_pad_image:
+  max_height_padding: 50
+  max_width_padding: 50
+
+random_crop_pad_image:
+  min_object_covered: 0.75
+  overlap_thresh: 0.5
+  clip_boxes: false
+  random_coef: 0.125
+  aspect_ratio_range: [0.75, 1.5]
+  area_range: [0.1, 1.0]
+  min_padded_size_ratio: [0.5, 0.75]
+  max_padded_size_ratio: [0.5, 0.75]
+
+random_crop_to_aspect_ratio:
+  aspect_ratio: 0.85
+  overlap_thresh: 0.35
+  clip_boxes: true
+
+# Patch and noise augmentations
+random_black_patches:
+  max_black_patches: 20
+  probability: 0.95
+  size_to_image_ratio: 0.12
+
+random_jpeg_quality:
+  random_coef: 0.5
+  min_jpeg_quality: 40
+  max_jpeg_quality: 90
+
+random_downscale_to_target_pixels:
+  random_coef: 0.5
+  min_target_pixels: 200
+  max_target_pixels: 900
+
+random_patch_gaussian:
+  random_coef: 0.5
+  min_patch_size: 10
+  max_patch_size: 300
+  min_gaussian_stddev: 0.2
+  max_gaussian_stddev: 1.5
+
+# Channel operations
+subtract_channel_mean:
+  means: [11.1, 11.1, 11.1]
+
+# Advanced augmentations
+autoaugment_image:
+  policy_name: "v0"
+
+drop_label_probabilistically:
+  label: 2
+  drop_probability: 0.5
+
+remap_labels:
+  original_labels: [1, 2]
+  new_label: 3
+
+random_resize_method:
+  target_size: [75, 100]
+
+resize_image:
+  new_height: 75
+  new_width: 100
+  method: "BICUBIC"
+
+random_self_concat_image:
+  concat_vertical_probability: 0.5
+  concat_horizontal_probability: 0.25
+
+# SSD-specific augmentations
+ssd_random_crop:
+  operations:
+    - min_object_covered: 0.0
+      aspect_ratio_range: [0.875, 1.125]
+      area_range: [0.5, 1.0]
+      overlap_thresh: 0.0
+      clip_boxes: false
+      random_coef: 0.375
+    - min_object_covered: 0.25
+      aspect_ratio_range: [0.75, 1.5]
+      area_range: [0.5, 1.0]
+      overlap_thresh: 0.25
+      clip_boxes: true
+      random_coef: 0.375
+
+ssd_random_crop_pad:
+  operations:
+    - min_object_covered: 0.1
+      aspect_ratio_range: [0.875, 1.125]
+      area_range: [0.5, 1.0]
+      overlap_thresh: 0.3
+      clip_boxes: false
+      random_coef: 0.375
+      min_padded_size_ratio: [1.0, 1.0]
+      max_padded_size_ratio: [2.0, 2.0]
+      pad_color: [0.5, 0.5, 0.5]
+
+ssd_random_crop_fixed_aspect_ratio:
+  min_object_covered: 0.0
+  area_range: [0.5, 1.0]
+  overlap_thresh: 0.0
+  clip_boxes: false
+  random_coef: 0.375
+  aspect_ratio: 0.875
+
+ssd_random_crop_pad_fixed_aspect_ratio:
+  operations:
+    - min_object_covered: 0.1
+      area_range: [0.5, 1.0]
+      overlap_thresh: 0.3
+      clip_boxes: false
+      random_coef: 0.375
+      min_padded_size_ratio: [1.0, 1.0]
+      max_padded_size_ratio: [2.0, 2.0]
+  aspect_ratio: 0.875
+
+convert_class_logits_to_softmax:
+  temperature: 2
+
+random_square_crop_by_scale:
+  scale_min: 0.25
+  scale_max: 2.0
+  num_scales: 8
+
+adjust_gamma:
+  gamma: 2.2
+  gain: 2.0
